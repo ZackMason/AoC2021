@@ -5,13 +5,13 @@ def part_one():
 
     pos = [0, 0]
     for cmd in data:
-        match cmd.split():
-            case ['forward', i]:
-                pos[0] += int(i)
-            case ['down', i]:
-                pos[1] += int(i)
-            case ['up', i]:
-                pos[1] -= int(i)
+        match [c:=cmd.split(), c[0], int(c[1])]:
+            case [_, 'forward', i]:
+                pos[0] += i
+            case [_, 'down', i]:
+                pos[1] += i
+            case [_, 'up', i]:
+                pos[1] -= i
             case _:
                 print('Unknown cmd')
 
@@ -24,12 +24,12 @@ def part_two():
     pos = [0, 0, 0]
     for cmd in data:
         match [c:=cmd.split(), c[0], int(c[1])]:
-            case [_,'forward', i]:
+            case [_, 'forward', i]:
                 pos[0] += i
                 pos[1] += pos[2] * i
-            case [_,'down', i]:
+            case [_, 'down', i]:
                 pos[2] += i
-            case [_,'up', i]:
+            case [_, 'up', i]:
                 pos[2] -= i
             case _:
                 print('Unknown cmd')
