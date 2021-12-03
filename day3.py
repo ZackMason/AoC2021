@@ -1,0 +1,65 @@
+from util import *
+
+def part_one():
+    data = parse_input()
+    ones = [0,0,0,0,0,0,0,0,0,0,0,0]
+    zeros = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+    for line in data:
+        for i, char in enumerate(line):
+            if char == '1':
+                ones[i] += 1
+            elif char == '0':
+                zeros[i] += 1
+
+    gamma = int(''.join(['1' if ones[i] > zeros[i] else '0' for i in range(len(ones))]), base=2)
+    epi = int(''.join(['1' if ones[i] < zeros[i] else '0' for i in range(len(ones))]), base=2)
+
+    print(f'{gamma=} {epi=}')
+    print(gamma*epi)
+
+
+def part_two():
+    data = parse_input()
+    i = 0
+    ox = data[:]
+    co2 = data[:]
+
+    while len(ox) > 1:
+        ones = [0,0,0,0,0,0,0,0,0,0,0,0]
+        zeros = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+        for line in ox:
+            if line[i] == '1':
+                ones[i] += 1
+            elif line[i] == '0':
+                zeros[i] += 1
+
+        most_common = '1' if ones[i] >= zeros[i] else '0'
+
+        ox = [x for x in ox if x[i] == most_common]
+        i+=1
+    print(ox)
+
+    i=0
+    while len(co2) > 1:
+        ones = [0,0,0,0,0,0,0,0,0,0,0,0]
+        zeros = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+        for line in co2:
+            if line[i] == '1':
+                ones[i] += 1
+            elif line[i] == '0':
+                zeros[i] += 1
+
+        most_common = '1' if ones[i] < zeros[i] else '0'
+
+        co2 = [x for x in co2 if x[i] == most_common]
+        i+=1
+    print(co2)
+
+    print(int(ox[0],base=2) * int(co2[0], base=2))
+
+
+if __name__ == '__main__':
+    part_two()
