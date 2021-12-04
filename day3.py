@@ -1,19 +1,6 @@
 from util import *
 import numpy as np
 
-def part_one_clean():
-    data = parse_input()
-    l = len(data[0])
-
-    histo = [0 for i in range(l)]
-
-    col = [[x for x in line] for line in data]
-    
-    col = [''.join(x) for x in np.transpose(col)]
-
-
-    print(f'{col}')
-
 def part_one():
     data = parse_input()
     cols = np.transpose([[c for c in line] for line in data])
