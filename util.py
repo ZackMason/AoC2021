@@ -10,7 +10,8 @@ def text_to_list():
 def parse_input():
     l = []
     try:
-        while t:=input():
-            l.append(t)
+        while True:
+            l.append(input())
+        return l
     except:
         return l

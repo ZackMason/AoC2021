@@ -1,22 +1,25 @@
 from util import *
+import numpy as np
+
+def part_one_clean():
+    data = parse_input()
+    l = len(data[0])
+
+    histo = [0 for i in range(l)]
+
+    col = [[x for x in line] for line in data]
+    
+    col = [''.join(x) for x in np.transpose(col)]
+
+
+    print(f'{col}')
 
 def part_one():
     data = parse_input()
-    ones = [0,0,0,0,0,0,0,0,0,0,0,0]
-    zeros = [0,0,0,0,0,0,0,0,0,0,0,0]
-
-    for line in data:
-        for i, char in enumerate(line):
-            if char == '1':
-                ones[i] += 1
-            elif char == '0':
-                zeros[i] += 1
-
-    gamma = int(''.join(['1' if ones[i] > zeros[i] else '0' for i in range(len(ones))]), base=2)
-    epi = int(''.join(['1' if ones[i] < zeros[i] else '0' for i in range(len(ones))]), base=2)
-
-    print(f'{gamma=} {epi=}')
-    print(gamma*epi)
+    cols = np.transpose([[c for c in line] for line in data])
+    count = [sum([int(x) for x in col]) for col in cols]
+    h = len(data) // 2
+    print(int(''.join(['1' if x > h else '0' for x in count]),2)*int(''.join(['0' if x > h else '1' for x in count]),2))
 
 
 def part_two():
@@ -62,4 +65,4 @@ def part_two():
 
 
 if __name__ == '__main__':
-    part_two()
+    part_one()
