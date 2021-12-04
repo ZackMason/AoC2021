@@ -12,6 +12,6 @@ def parse_input():
     try:
         while True:
             l.append(input())
-        return l
+        return [x for x in l if x != '']
     except:
-        return l
+        return [x for x in l if x != '']

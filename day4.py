@@ -3,12 +3,8 @@ import numpy as np
 
 def check_board(board, marked):
     check = [[1 if c in marked else 0 for c in row] for row in board]
-    for row in check:
-        if sum(row) == 5:
-            return marked[-1] * np.sum([[int(c) if c not in marked else 0 for c in row] for row in board])
-    for col in np.transpose(check):
-        if sum(col) == 5:
-            return marked[-1] * np.sum([[int(c) if c not in marked else 0 for c in row] for row in board])
+    if True in [*np.all(check, axis=0), *np.all(np.transpose(check), axis=0)]:
+        return marked[-1] * np.sum([[int(c) if c not in marked else 0 for c in row] for row in board])
     return False
 
 def part_one(data):
