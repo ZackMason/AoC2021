@@ -17,7 +17,7 @@ def part_one(data):
 
     cmds = cmds.split(',')
 
-    boards = [np.array([y.split() for y in boards][x:x+5:]) for x in range(0, len(boards), 5)]
+    boards = [np.array([y.split() for y in boards[x:x+5:]]) for x in range(0, len(boards), 5)]
     
     marked, *cmds = cmds
     marked = [marked]
@@ -34,7 +34,7 @@ def part_two(data):
 
     cmds = cmds.split(',')
 
-    boards = [np.array([y.split() for y in boards][x:x+5:]) for x in range(0, len(boards), 5)]
+    boards = [np.array([y.split() for y in boards[x:x+5:]]) for x in range(0, len(boards), 5)]
     
     marked, *cmds = cmds
     marked = [marked]
