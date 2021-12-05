@@ -12,12 +12,12 @@ def solve(data, p2 = False):
             continue
 
         for i in range(max(dx,dy)):
-            if x1+i*coeff[0] not in board: board[x1+i*coeff[0]] = {}
-            if y1+i*coeff[1] not in board[x1+i*coeff[0]]: board[x1+i*coeff[0]][y1+i*coeff[1]] = 0
-            board[x1+i*coeff[0]][y1+i*coeff[1]] += 1
+            index = '%d %d' % (x1+i*coeff[0], y1+i*coeff[1])
+            if index not in board: board[index] = 0
+            board[index] += 1
 
     a = 0
-    [[a := a + 1 for _, count in v.items() if count >= 2] for _, v in board.items()]
+    [a := a + 1 for _, count in board.items() if count >= 2] 
     print(f'{a=}')
 
 
