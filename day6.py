@@ -18,7 +18,7 @@ def solve(data, days = 81):
     print(a)
 
 # A**n * x = y
-# x[0] -> y[6]
+# x[0] + x[7] -> y[6]
 # x[0] -> y[8]
 def linalg_solution(data, days= 81):
     fishes = np.array([0 for i in range(9)])
