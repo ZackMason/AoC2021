@@ -25,7 +25,7 @@ def linalg_solution(data, days= 81):
     for i in data:
         fishes[i] += 1
 
-    A = matrix_power(np.array([
+    A = np.array([
     #   [0 1 2 3 4 5 6 7 8]
         [0,1,0,0,0,0,0,0,0], #[0]
         [0,0,1,0,0,0,0,0,0], #[1]
@@ -36,9 +36,11 @@ def linalg_solution(data, days= 81):
         [1,0,0,0,0,0,0,1,0], #[6]
         [0,0,0,0,0,0,0,0,1], #[7]
         [1,0,0,0,0,0,0,0,0], #[8]
-    ], dtype=np.longlong), days)
+    ], dtype=np.longlong)
 
-    fishes =  A * fishes
+    A = matrix_power(A, days)
+
+    fishes =  A @ fishes
 
     print(fishes.sum())
 
